@@ -1,0 +1,21 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+use lib 'lib', '../lib';
+
+use Command;
+use Command::Help;
+use Command::Version;
+
+my $command = $ARGV[0];
+
+if ($command) {
+    Command->dispatch($command);
+}
+else {
+    Command::Version->execute;
+    Command::Help->execute;
+    Command->dispatch() while 42;
+}
+
