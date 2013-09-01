@@ -12,8 +12,7 @@ my $command = $ARGV[0];
 
 if ($command) {
     Command->dispatch($command);
-}
-else {
+} else {
     Command::Version->execute;
     Command::Help->execute;
     Command->dispatch() while 42;
