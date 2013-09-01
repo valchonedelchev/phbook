@@ -3,13 +3,16 @@ package PBDB;
 use strict;
 use warnings;
 use PBDB::File;
+use PBDB::Cloud;
 
 our $VERSION = '1.0';
 
 sub DRIVER_FILE    { 'file' }
-sub DRIVER_DEFAULT { PBDB->DRIVER_FILE }
+sub DRIVER_CLOUD   { 'cloud' }
+sub DRIVER_DEFAULT { DRIVER_CLOUD }
 
-sub new {
+sub new
+{
     my $class = shift;
     my $this  = {@_};
     $this->{driver} = PBDB->DRIVER_DEFAULT unless $this->{driver};
@@ -17,10 +20,12 @@ sub new {
     return $this->_get_driver();
 }
 
-sub _get_driver {
+sub _get_driver
+{
     my $self = shift;
-    return PBDB::File->new if $self->{driver} eq PBDB->DRIVER_FILE;
-    die { error => "database driver error!" };
+    return PBDB::File->new  if $self->{driver} eq PBDB->DRIVER_FILE;
+    return PBDB::Cloud->new if $self->{driver} eq PBDB->DRIVER_CLOUD;
+    die { error => "Failed to load database driver!" };
 }
 
 # array = find( *string )
@@ -33,3 +38,4 @@ sub add { die { error => 'abstract' } }
 sub del { die { error => 'abstract' } }
 
 1;
+

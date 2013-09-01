@@ -51,7 +51,7 @@ sub resolve {
             $self->print( "Command [$command] failed - " . $@->{error} );
         }
         else {
-            $self->print("Command [$command] failed!");
+            $self->print("Command [$command] failed! $@");
         }
         return 0;
     };

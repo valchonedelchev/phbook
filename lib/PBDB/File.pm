@@ -2,7 +2,6 @@ package PBDB::File;
 
 use strict;
 use warnings;
-use File::Slurp;
 
 use base 'PBDB';
 
