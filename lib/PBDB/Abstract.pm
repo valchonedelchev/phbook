@@ -1,23 +1,7 @@
-package PBDB;
+package PBDB::Abstract;
 
 use strict;
 use warnings;
-
-use PBDB::Abstract;
-use PBDB::File;
-use PBDB::Cloud;
-use PBDB::Entry;
-
-our $VERSION = '1.0';
-
-sub new {
-    shift and PBDB::Abstract->new(@_);
-}
-
-1;
-
-__END__
-
 
 sub DRIVER_FILE    { 'file' }
 sub DRIVER_CLOUD   { 'cloud' }
@@ -53,16 +37,9 @@ sub add { die { error => 'abstract' } }
 # bool = del( PBDB::Entry )
 sub del { die { error => 'abstract' } }
 
-sub set_storage
-{
-    my ( $self, $driver ) = @_;
-    $ENV{PBDB_DRIVER} = $driver;
-}
-
 sub get_storage
 {
     defined $ENV{PBDB_DRIVER} ? $ENV{PBDB_DRIVER} : DRIVER_DEFAULT;
 }
 
 1;
-

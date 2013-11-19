@@ -3,7 +3,6 @@ package Command::Create;
 use strict;
 use warnings;
 use PBDB;
-use PBDB::Entry;
 
 use base 'Command';
 

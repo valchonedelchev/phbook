@@ -3,7 +3,7 @@ package PBDB::File;
 use strict;
 use warnings;
 
-use base 'PBDB';
+use base 'PBDB::Abstract';
 
 sub new {
 	my $class = shift;
